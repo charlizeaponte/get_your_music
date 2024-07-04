@@ -21,15 +21,15 @@ def register():
         return redirect(url_for('home'))
     return render_template("register.html", title="Register", form=form)
 
-@app.route("/update_server", methods=["POST"])
-def webhooks():
-    if request.method =="POST":
+@app.route("/update_server", methods=['POST'])
+def webhook():
+    if request.method == 'POST':
         repo = git.Repo('/home/getyourmusic/get_your_music')
         origin = repo.remotes.origin
         origin.pull()
         return 'Updated PythonAnywhere successfully', 200
     else:
-        return 'SOMETHING WENT WRONG', 400
+        return 'Wrong event type', 400
 
  
 if __name__ == '__main__': 
