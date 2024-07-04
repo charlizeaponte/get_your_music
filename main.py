@@ -21,9 +21,9 @@ def register():
         return redirect(url_for('home'))
     return render_template("register.html", title="Register", form=form)
 
-@app.route("/update_server", methods=['POST'])
+@app.route("/update_server", methods=["POST"])
 def webhooks():
-    if request.method =='POST':
+    if request.method =="POST":
         repo = git.Repo('/home/getyourmusic/get_your_music')
         origin = repo.remotes.origin
         origin.pull()
